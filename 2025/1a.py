@@ -4,11 +4,11 @@ dial = 50
 for line in f:
     if line[0] == 'L':
         dial -= int(line[1:])
-        if dial < 0:
+        while dial < 0:
             dial += 100
     if line[0] == 'R':
         dial += int(line[1:])
-        if dial > 99:
+        while dial > 99:
             dial -= 100
     if dial == 0:
         finalSum += 1
