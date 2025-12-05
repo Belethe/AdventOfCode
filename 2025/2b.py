@@ -1,0 +1,26 @@
+test = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
+input = "853-1994,1919078809-1919280414,1212082623-1212155811,2389-4173,863031-957102,9393261874-9393318257,541406-571080,1207634-1357714,36706-61095,6969667126-6969740758,761827-786237,5516637-5602471,211490-235924,282259781-282327082,587606-694322,960371-1022108,246136-353607,3-20,99-182,166156087-166181497,422-815,82805006-82876926,14165-30447,4775-7265,83298136-83428425,2439997-2463364,44-89,435793-511395,3291059-3440895,77768624-77786844,186-295,62668-105646,7490-11616,23-41,22951285-23017127"
+finalSum = 0
+
+ranges = input.split(",")
+
+for range in ranges:
+    interval = range.split("-")
+    start = int(interval[0])
+    end = int(interval[1])
+    i = start
+    while i <= end:
+        #Does i contain any repeating numbers)?
+        stringNumber = str(i)
+        length = len(stringNumber)
+        j = 1
+        while j < length: #For each part of the number
+            if length % (j) == 0: #Is this part an even division of the number
+                part = i % (10**j) #What is the part
+                if str(part)*(length//(j)) == stringNumber: #Is multiple of the parts the number
+                    finalSum += i
+                    break #Only count the number once
+            j += 1
+        i += 1
+
+print(finalSum)
